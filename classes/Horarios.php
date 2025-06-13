@@ -25,7 +25,7 @@ class Horarios {
      * Obtener todas las maestras
      */
     public function getMaestras() {
-        $stmt = $this->db->query("SELECT id, nombre FROM las_maestras ORDER BY nombre");
+        $stmt = $this->db->query("SELECT id, nombre FROM maestras ORDER BY nombre");
         return $stmt->fetchAll();
     }
     
@@ -33,7 +33,7 @@ class Horarios {
      * Obtener todos los alumnos
      */
     public function getAlumnos() {
-        $stmt = $this->db->query("SELECT id, nombre FROM las_h_alumnos ORDER BY nombre");
+        $stmt = $this->db->query("SELECT id, nombre FROM h_alumnos ORDER BY nombre");
         return $stmt->fetchAll();
     }
     
@@ -41,7 +41,7 @@ class Horarios {
      * Obtener todas las ubicaciones
      */
     public function getUbicaciones() {
-        $stmt = $this->db->query("SELECT id, ubicacion FROM las_ubicaciones ORDER BY ubicacion");
+        $stmt = $this->db->query("SELECT id, ubicacion FROM ubicaciones ORDER BY ubicacion");
         return $stmt->fetchAll();
     }
     
@@ -49,7 +49,7 @@ class Horarios {
      * Validar si un alumno ya tiene clase individual en el día especificado
      */
     public function alumnoTieneClaseIndividual($id_alumno, $dia_semana, $excluir_id = null) {
-        $sql = "SELECT COUNT(*) as total FROM las_horarios_asignados 
+        $sql = "SELECT COUNT(*) as total FROM horarios_asignados 
                 WHERE id_alumno = ? AND dia = ? AND tipo_clase = 'Individual'";
         
         if ($excluir_id) {
@@ -69,7 +69,7 @@ class Horarios {
      * Validar si una maestra ya tiene clase en el mismo horario y día
      */
     public function maestraTieneClaseEnHorario($id_maestra, $horario_inicio, $dia_semana, $excluir_id = null) {
-        $sql = "SELECT COUNT(*) as total FROM las_horarios_asignados 
+        $sql = "SELECT COUNT(*) as total FROM horarios_asignados 
                 WHERE id_maestra = ? AND dia = ? AND horario_inicio = ?";
         
         if ($excluir_id) {
@@ -89,7 +89,7 @@ class Horarios {
      * Validar si un alumno ya tiene clase grupal en el día especificado
      */
     public function alumnoTieneClaseGrupal($id_alumno, $dia_semana, $excluir_id = null) {
-        $sql = "SELECT COUNT(*) as total FROM las_horarios_asignados 
+        $sql = "SELECT COUNT(*) as total FROM horarios_asignados 
                 WHERE id_alumno = ? AND dia = ? AND tipo_clase = 'Grupal'";
         
         if ($excluir_id) {
@@ -166,7 +166,7 @@ class Horarios {
         // Obtener el día de la semana (por defecto 'Lunes' si no se especifica)
         $dia_semana = isset($data['dia_semana']) ? $data['dia_semana'] : 'Lunes';
         
-        $sql = "INSERT INTO las_horarios_asignados (dia, horario_inicio, horario_fin, id_maestra, id_alumno, id_ubicacion, tipo_clase) 
+        $sql = "INSERT INTO horarios_asignados (dia, horario_inicio, horario_fin, id_maestra, id_alumno, id_ubicacion, tipo_clase) 
                 VALUES (?, ?, ?, ?, ?, ?, ?)";
         
         $stmt = $this->db->prepare($sql);
@@ -186,10 +186,10 @@ class Horarios {
      */
     public function getHorarios($dia_semana = null) {
         $sql = "SELECT h.*, m.nombre as maestra_nombre, a.nombre as alumno_nombre, u.ubicacion 
-                FROM las_horarios_asignados h
-                JOIN las_maestras m ON h.id_maestra = m.id
-                JOIN las_h_alumnos a ON h.id_alumno = a.id
-                JOIN las_ubicaciones u ON h.id_ubicacion = u.id";
+                FROM horarios_asignados h
+                JOIN maestras m ON h.id_maestra = m.id
+                JOIN h_alumnos a ON h.id_alumno = a.id
+                JOIN ubicaciones u ON h.id_ubicacion = u.id";
         
         if ($dia_semana) {
             $sql .= " WHERE h.dia = ?";
@@ -210,7 +210,7 @@ class Horarios {
      * Eliminar horario
      */
     public function eliminarHorario($id) {
-        $sql = "DELETE FROM las_horarios_asignados WHERE id = ?";
+        $sql = "DELETE FROM horarios_asignados WHERE id = ?";
         $stmt = $this->db->prepare($sql);
         return $stmt->execute([$id]);
     }
@@ -235,10 +235,10 @@ class Horarios {
      */
     public function getHorariosPorDia() {
         $sql = "SELECT h.*, m.nombre as maestra_nombre, a.nombre as alumno_nombre, u.ubicacion 
-                FROM las_horarios_asignados h
-                JOIN las_maestras m ON h.id_maestra = m.id
-                JOIN las_h_alumnos a ON h.id_alumno = a.id
-                JOIN las_ubicaciones u ON h.id_ubicacion = u.id
+                FROM horarios_asignados h
+                JOIN maestras m ON h.id_maestra = m.id
+                JOIN h_alumnos a ON h.id_alumno = a.id
+                JOIN ubicaciones u ON h.id_ubicacion = u.id
                 ORDER BY h.dia, h.horario_inicio, m.nombre";
         
         $stmt = $this->db->query($sql);
@@ -253,7 +253,7 @@ class Horarios {
         return $horarios_por_dia;
     }
     public function getHorarioPorId($id) {
-        $sql = "SELECT * FROM las_horarios_asignados WHERE id = ?";
+        $sql = "SELECT * FROM horarios_asignados WHERE id = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([$id]);
         return $stmt->fetch();

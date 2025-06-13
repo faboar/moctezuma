@@ -26,7 +26,7 @@ class HorariosLibres {
      * Obtener todas las maestras
      */
     public function getMaestras() {
-        $stmt = $this->db->query("SELECT id, nombre FROM las_maestras ORDER BY nombre");
+        $stmt = $this->db->query("SELECT id, nombre FROM maestras ORDER BY nombre");
         return $stmt->fetchAll();
     }
     
@@ -35,7 +35,7 @@ class HorariosLibres {
      */
     public function getHorariosLibres30min($inicio_horario, $fin_horario, $id_maestra, $dia) {
         try {
-            $sql = "CALL sp_las_encontrar_bloques_libres(?, ?, ?, ?)";
+            $sql = "CALL sp_encontrar_bloques_libres(?, ?, ?, ?)";
             $stmt = $this->db->prepare($sql);
             $stmt->execute([$inicio_horario, $fin_horario, $id_maestra, $dia]);
             
@@ -44,7 +44,7 @@ class HorariosLibres {
             
             return $result;
         } catch (PDOException $e) {
-            error_log("Error en sp_las_encontrar_bloques_libres: " . $e->getMessage());
+            error_log("Error en sp_encontrar_bloques_libres: " . $e->getMessage());
             return [];
         }
     }
@@ -54,7 +54,7 @@ class HorariosLibres {
      */
     public function getHorariosLibres45min($inicio_horario, $fin_horario, $id_maestra, $dia) {
         try {
-            $sql = "CALL sp_las_encontrar_bloques_libres_45min(?, ?, ?, ?)";
+            $sql = "CALL sp_encontrar_bloques_libres_45min(?, ?, ?, ?)";
             $stmt = $this->db->prepare($sql);
             $stmt->execute([$inicio_horario, $fin_horario, $id_maestra, $dia]);
             
@@ -63,7 +63,7 @@ class HorariosLibres {
             
             return $result;
         } catch (PDOException $e) {
-            error_log("Error en sp_las_encontrar_bloques_libres_45min: " . $e->getMessage());
+            error_log("Error en sp_encontrar_bloques_libres_45min: " . $e->getMessage());
             return [];
         }
     }
@@ -134,7 +134,7 @@ class HorariosLibres {
      * Obtener información de la maestra por ID
      */
     public function getMaestraPorId($id) {
-        $sql = "SELECT id, nombre FROM las_maestras WHERE id = ?";
+        $sql = "SELECT id, nombre FROM maestras WHERE id = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([$id]);
         return $stmt->fetch();
