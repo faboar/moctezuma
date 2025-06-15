@@ -300,7 +300,7 @@ $lista_horarios = $horarios->getHorarios('Lunes'); // Se mantiene 'Lunes' como d
                                         } 
                                         // Si no hay POST, seleccionar el segundo elemento (contador == 2)
                                         else {
-                                            $is_selected = ($contador == 2);
+                                            $is_selected = ($contador == 3);
                                         }
                                     ?>
                                     <option value="<?php echo $ubicacion['id']; ?>" 
