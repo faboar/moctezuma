@@ -234,32 +234,39 @@ class Horarios {
      * Obtener horarios agrupados por día de la semana
      */
     public function getHorariosPorDia() {
-        if (isset($_SESSION["id_tipo"]) && ($_SESSION["id_tipo"] == 3)):{
-                $sql = "SELECT h.*, m.nombre as maestra_nombre, a.nombre as alumno_nombre, u.ubicacion 
+    if (isset($_SESSION["id_tipo"]) && ($_SESSION["id_tipo"] == 3)) {
+        $sql = "SELECT h.*, m.nombre as maestra_nombre, a.nombre as alumno_nombre, u.ubicacion 
                 FROM horarios_asignados h
                 JOIN maestras m ON h.id_maestra = m.id
                 JOIN h_alumnos a ON h.id_alumno = a.id
-                JOIN ubicaciones u ON h.id_ubicacion = u.id where m.id=$_SESSION["id_maestra"]
+                JOIN ubicaciones u ON h.id_ubicacion = u.id 
+                WHERE m.id = ?
                 ORDER BY h.dia, h.horario_inicio, m.nombre";
-        }
-        else {
-                $sql = "SELECT h.*, m.nombre as maestra_nombre, a.nombre as alumno_nombre, u.ubicacion 
+        
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$_SESSION["id_maestra"]]);
+    }
+    else {
+        $sql = "SELECT h.*, m.nombre as maestra_nombre, a.nombre as alumno_nombre, u.ubicacion 
                 FROM horarios_asignados h
                 JOIN maestras m ON h.id_maestra = m.id
                 JOIN h_alumnos a ON h.id_alumno = a.id
                 JOIN ubicaciones u ON h.id_ubicacion = u.id 
                 ORDER BY h.dia, h.horario_inicio, m.nombre";
-        }
-        $stmt = $this->db->query($sql);
-        $todos_horarios = $stmt->fetchAll();
         
-        // Agrupar por día
-        $horarios_por_dia = [];
-        foreach ($todos_horarios as $horario) {
-            $horarios_por_dia[$horario['dia']][] = $horario;
-        }
-        
-        return $horarios_por_dia;
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+    }
+    
+    $todos_horarios = $stmt->fetchAll();
+    
+    // Agrupar por día
+    $horarios_por_dia = [];
+    foreach ($todos_horarios as $horario) {
+        $horarios_por_dia[$horario['dia']][] = $horario;
+    }
+    
+    return $horarios_por_dia;
     }
     public function getHorarioPorId($id) {
         $sql = "SELECT * FROM horarios_asignados WHERE id = ?";
