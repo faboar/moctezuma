@@ -194,8 +194,8 @@ foreach (['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'] as $dia
                         <i class="fas fa-user me-2"></i>
                         <?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : 'Usuario'; ?>
                     </div>
-                    <a href="/blueadmin/logout.php" class="logout-btn">
-                        <i class="fas fa-sign-out-alt me-1"></i>Cerrar Sesión
+                    <a href=" /blueadmin/horas.php" class="logout-btn">
+                        <i class="fas fa-sign-out-alt me-1"></i>Ir al Inicio
                     </a>
                 </div>
             </div>
