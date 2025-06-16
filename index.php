@@ -157,37 +157,39 @@ foreach (['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'] as $dia
                     <p class="mb-0 mt-2">Vista de consulta de horarios semanales</p>
                 </div>
                 <div class="col-md-3 text-center">
+                    <?php if (isset($_SESSION["id_tipo"]) && ($_SESSION["id_tipo"] == 0 || $_SESSION["id_tipo"] == 2)): ?>
                     <!-- Botón Horarios Libres -->
-                    <a href="horarios_libres.php" class="btn btn-light me-2">
-                        <i class="fas fa-search me-2"></i>Horarios Libres
-                    </a>
-                    
-                    <!-- Dropdown Administración de Horarios -->
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-cog me-2"></i>Administración de Horarios
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="lunes/index.php">
-                                <i class="fas fa-calendar-day me-2 text-primary"></i>Lunes
-                            </a></li>
-                            <li><a class="dropdown-item" href="martes/index.php">
-                                <i class="fas fa-calendar-day me-2 text-danger"></i>Martes
-                            </a></li>
-                            <li><a class="dropdown-item" href="miercoles/index.php">
-                                <i class="fas fa-calendar-day me-2 text-info"></i>Miércoles
-                            </a></li>
-                            <li><a class="dropdown-item" href="jueves/index.php">
-                                <i class="fas fa-calendar-day me-2 text-success"></i>Jueves
-                            </a></li>
-                            <li><a class="dropdown-item" href="viernes/index.php">
-                                <i class="fas fa-calendar-day me-2 text-warning"></i>Viernes
-                            </a></li>
-                            <li><a class="dropdown-item" href="sabado/index.php">
-                                <i class="fas fa-calendar-day me-2 text-secondary"></i>Sábado
-                            </a></li>
-                        </ul>
-                    </div>
+                        <a href="horarios_libres.php" class="btn btn-light me-2">
+                            <i class="fas fa-search me-2"></i>Horarios Libres
+                        </a>
+       
+                        <!-- Dropdown Administración de Horarios -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-cog me-2"></i>Administración de Horarios
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="lunes/index.php">
+                                    <i class="fas fa-calendar-day me-2 text-primary"></i>Lunes
+                                </a></li>
+                                <li><a class="dropdown-item" href="martes/index.php">
+                                    <i class="fas fa-calendar-day me-2 text-danger"></i>Martes
+                                </a></li>
+                                <li><a class="dropdown-item" href="miercoles/index.php">
+                                    <i class="fas fa-calendar-day me-2 text-info"></i>Miércoles
+                                </a></li>
+                                <li><a class="dropdown-item" href="jueves/index.php">
+                                    <i class="fas fa-calendar-day me-2 text-success"></i>Jueves
+                                </a></li>
+                                <li><a class="dropdown-item" href="viernes/index.php">
+                                    <i class="fas fa-calendar-day me-2 text-warning"></i>Viernes
+                                </a></li>
+                                <li><a class="dropdown-item" href="sabado/index.php">
+                                    <i class="fas fa-calendar-day me-2 text-secondary"></i>Sábado
+                                </a></li>
+                            </ul>
+                            </div>
+                    <?php endif; ?>
                 </div>
                 <div class="col-md-3 text-end">
                     <div class="user-info mb-2">
