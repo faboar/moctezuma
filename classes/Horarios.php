@@ -242,6 +242,7 @@ class Horarios {
                 JOIN ubicaciones u ON h.id_ubicacion = u.id 
                 WHERE m.id = ?
                 ORDER BY h.dia, h.horario_inicio, m.nombre";
+                echo $_SESSION["id_maestra"];
         
         $stmt = $this->db->prepare($sql);
         $stmt->execute([$_SESSION["id_maestra"]]);
