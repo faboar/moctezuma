@@ -493,28 +493,7 @@ foreach (['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'] as $dia
         </div>
     </div>
 
-    <!-- Botón flotante para acciones rápidas -->
-    <div class="btn-group dropup">
-        <button type="button" class="btn btn-primary btn-floating" data-bs-toggle="dropdown">
-            <i class="fas fa-plus"></i>
-        </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="index.php">
-                <i class="fas fa-plus me-2"></i>Registrar Horario
-            </a></li>
-            <li><a class="dropdown-item" href="horarios_libres.php">
-                <i class="fas fa-search me-2"></i>Buscar Horarios Libres
-            </a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="test_connection.php">
-                <i class="fas fa-tools me-2"></i>Verificar Sistema
-            </a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item text-danger" href="/blueadmin/logout.php">
-                <i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión
-            </a></li>
-        </ul>
-    </div>
+    
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
