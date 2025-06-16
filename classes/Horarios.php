@@ -234,13 +234,22 @@ class Horarios {
      * Obtener horarios agrupados por día de la semana
      */
     public function getHorariosPorDia() {
-        $sql = "SELECT h.*, m.nombre as maestra_nombre, a.nombre as alumno_nombre, u.ubicacion 
+        if (isset($_SESSION["id_tipo"]) && ($_SESSION["id_tipo"] == 3)):{
+                $sql = "SELECT h.*, m.nombre as maestra_nombre, a.nombre as alumno_nombre, u.ubicacion 
                 FROM horarios_asignados h
                 JOIN maestras m ON h.id_maestra = m.id
                 JOIN h_alumnos a ON h.id_alumno = a.id
-                JOIN ubicaciones u ON h.id_ubicacion = u.id
+                JOIN ubicaciones u ON h.id_ubicacion = u.id where m.id=$_SESSION["id_maestra"]
                 ORDER BY h.dia, h.horario_inicio, m.nombre";
-        
+        }
+        else {
+                $sql = "SELECT h.*, m.nombre as maestra_nombre, a.nombre as alumno_nombre, u.ubicacion 
+                FROM horarios_asignados h
+                JOIN maestras m ON h.id_maestra = m.id
+                JOIN h_alumnos a ON h.id_alumno = a.id
+                JOIN ubicaciones u ON h.id_ubicacion = u.id 
+                ORDER BY h.dia, h.horario_inicio, m.nombre";
+        }
         $stmt = $this->db->query($sql);
         $todos_horarios = $stmt->fetchAll();
         
