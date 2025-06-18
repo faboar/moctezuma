@@ -378,16 +378,7 @@ foreach (['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'] as $dia
                                                             // Mostrar solo los nombres (sin apellidos)
                                                             $nombre_completo = htmlspecialchars($item['alumno_nombre']);
                                                             $palabras = explode(' ', $nombre_completo);
-                                                            
-                                                            // Si hay más de 2 palabras, tomar solo las primeras (nombres)
-                                                            if (count($palabras) > 2) {
-                                                                // Remover las últimas 2 palabras (apellidos)
-                                                                $nombres_solo = array_slice($palabras, 0, -2);
-                                                                echo implode(' ', $nombres_solo);
-                                                            } else {
-                                                                // Si hay 2 o menos palabras, mostrar solo la primera
-                                                                echo $palabras[0];
-                                                            }
+                                                            echo $palabras[0];
                                                             ?>
                                                         </div>
                                                     </td>
