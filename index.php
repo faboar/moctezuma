@@ -361,7 +361,12 @@ foreach (['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'] as $dia
                                         </thead>
                                         <tbody>
                                             <?php foreach ($horarios_del_dia as $item): ?>
-                                                <tr>
+                                            <?php
+                                                // Calcular duración
+                                                $inicio = strtotime($item['horario_inicio']);
+                                                $fin = strtotime($item['horario_fin']);
+                                                $duracion_minutos = ($fin - $inicio) / 60;
+                                            ?>
                                                     <td>
                                                         <div class="fw-bold text-primary">
                                                             <?php echo formatTime($item['horario_inicio']); ?>
