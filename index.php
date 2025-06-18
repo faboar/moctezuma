@@ -342,6 +342,9 @@ foreach (['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'] as $dia
                                                 <th width="20%">
                                                     <i class="fas fa-clock me-1"></i>Horario
                                                 </th>
+                                                 <th width="20%">
+                                                    <i class="fas fa-clock me-1"></i>Duración
+                                                </th>
                                                 <th width="25%">
                                                     <i class="fas fa-chalkboard-teacher me-1"></i>Maestra
                                                 </th>
@@ -367,6 +370,13 @@ foreach (['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'] as $dia
                                                             hasta <?php echo formatTime($item['horario_fin']); ?>
                                                         </small>
                                                     </td>
+                                                    <td>
+                                                        <span class="badge <?php echo ($duracion_minutos == 30 || $duracion_minutos == 45) ? 'bg-success' : 'bg-warning'; ?>">
+                                                            <?php echo $duracion_minutos; ?> min
+                                                        </span>
+                                                    </td>
+
+
                                                     <td>
                                                         <div class="fw-bold">
                                                             <?php echo htmlspecialchars($item['maestra_nombre']); ?>
