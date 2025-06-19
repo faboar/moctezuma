@@ -343,7 +343,7 @@ foreach (['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'] as $dia
                                                     <i class="fas fa-clock me-1"></i>Horario
                                                 </th>
                                                  <th width="20%">
-                                                    <i class="fas fa-clock me-1"></i>Duración
+                                                    <i class="fas fa-hourglass me-1"></i>Duración
                                                 </th>
                                                 <th width="25%">
                                                     <i class="fas fa-chalkboard-teacher me-1"></i>Maestra
