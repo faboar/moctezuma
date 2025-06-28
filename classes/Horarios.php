@@ -33,7 +33,7 @@ class Horarios {
      * Obtener todos los alumnos
      */
     public function getAlumnos() {
-        $stmt = $this->db->query("SELECT id, nombre FROM h_alumnos ORDER BY nombre");
+        $stmt = $this->db->query("SELECT id, nombre FROM h_alumnos where activo=1 ORDER BY nombre");
         return $stmt->fetchAll();
     }
     
