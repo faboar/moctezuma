@@ -4,7 +4,7 @@
 // ==================================================
 
 // Incluir configuración de la base de datos
-require_once 'config/database.php';
+require_once 'config/database2.php';
 
 // Procesar el formulario
 $fecha_seleccionada = isset($_POST['fecha']) ? $_POST['fecha'] : date('Y-m-d');
