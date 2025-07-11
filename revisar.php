@@ -91,6 +91,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['fecha'])) {
         tr:hover {
             background-color: #f5f5f5;
         }
+        .nombre-grupo {
+            background-color: #e3f2fd;
+            font-weight: bold;
+            border-left: 4px solid #2196f3;
+        }
+        .nombre-diferente {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+        }
+        .separador-nombre {
+            background-color: #f5f5f5;
+            border-top: 2px solid #ddd;
+            font-weight: bold;
+        }
         .estado-coinciden {
             background-color: #d4edda;
             color: #155724;
@@ -179,9 +193,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['fecha'])) {
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($resultados as $fila): ?>
-                            <tr>
-                                <td><?php echo htmlspecialchars($fila['nombre'] ?? ''); ?></td>
+                        <?php 
+                        $nombre_anterior = '';
+                        $contador_grupo = 0;
+                        foreach ($resultados as $index => $fila): 
+                            $nombre_actual = $fila['nombre'] ?? '';
+                            
+                            // Verificar si es un nuevo grupo de nombres
+                            if ($nombre_actual !== $nombre_anterior) {
+                                $contador_grupo++;
+                                $nombre_anterior = $nombre_actual;
+                                
+                                // Mostrar separador si no es el primer grupo
+                                if ($index > 0): ?>
+                                    <tr class="separador-nombre">
+                                        <td colspan="5" style="text-align: center; font-size: 12px; color: #666;">
+                                            ▲ Fin grupo anterior • Inicio nuevo grupo ▼
+                                        </td>
+                                    </tr>
+                                <?php endif;
+                            }
+                            
+                            // Determinar la clase CSS para el nombre
+                            $clase_fila = ($contador_grupo % 2 == 1) ? 'nombre-grupo' : 'nombre-diferente';
+                        ?>
+                            <tr class="<?php echo $clase_fila; ?>">
+                                <td>
+                                    <strong><?php echo htmlspecialchars($nombre_actual); ?></strong>
+                                    <br><small style="color: #666;">Grupo #<?php echo $contador_grupo; ?></small>
+                                </td>
                                 <td><?php echo htmlspecialchars($fila['horario'] ?? ''); ?></td>
                                 <td><?php echo htmlspecialchars($fila['tipo_clase'] ?? '-'); ?></td>
                                 <td><?php echo htmlspecialchars($fila['tipo_hora'] ?? '-'); ?></td>
