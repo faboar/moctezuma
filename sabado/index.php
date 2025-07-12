@@ -332,7 +332,6 @@ $lista_horarios = $horarios->getHorarios('Sabado'); // Se mantiene 'Sabado' como
                                     <i class="fas fa-users me-1"></i>Tipo de Clase
                                 </label>
                                 <select class="form-select" id="tipo_clase" name="tipo_clase" required>
-                                    <option value="">Seleccione el tipo...</option>
                                     <option value="Individual" <?php echo (!isset($_POST['tipo_clase']) || $_POST['tipo_clase'] == 'Individual') ? 'selected' : ''; ?>>
                                         Individual
                                     </option>

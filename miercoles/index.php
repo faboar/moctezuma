@@ -316,14 +316,13 @@ $lista_horarios = $horarios->getHorarios('Miercoles'); // Se mantiene 'Miercoles
                                     <i class="fas fa-users me-1"></i>Tipo de Clase
                                 </label>
                                 <select class="form-select" id="tipo_clase" name="tipo_clase" required>
-                                    <option value="">Seleccione el tipo...</option>
-                                    <option value="Individual" <?php echo (!isset($_POST['tipo_clase']) || $_POST['tipo_clase'] == 'Individual') ? 'selected' : ''; ?>>
+                                     <option value="Individual" <?php echo (!isset($_POST['tipo_clase']) || $_POST['tipo_clase'] == 'Individual') ? 'selected' : ''; ?>>
                                         Individual
                                     </option>
-                                    <option value="Completa" <?php echo (!isset($_POST['tipo_clase']) || $_POST['tipo_clase'] == 'Completa') ? 'selected' : ''; ?>>
+                                    <option value="Completa" <?php echo (isset($_POST['tipo_clase']) && $_POST['tipo_clase'] == 'Completa') ? 'selected' : ''; ?>>
                                         Completa
                                     </option>
-                                    <option value="Pareja" <?php echo (!isset($_POST['tipo_clase']) || $_POST['tipo_clase'] == 'Pareja') ? 'selected' : ''; ?>>
+                                    <option value="Pareja" <?php echo (isset($_POST['tipo_clase']) && $_POST['tipo_clase'] == 'Pareja') ? 'selected' : ''; ?>>
                                         Pareja
                                     </option>
                                     <option value="Grupal" <?php echo (isset($_POST['tipo_clase']) && $_POST['tipo_clase'] == 'Grupal') ? 'selected' : ''; ?>>
@@ -332,7 +331,7 @@ $lista_horarios = $horarios->getHorarios('Miercoles'); // Se mantiene 'Miercoles
                                     <option value="Reposición" <?php echo (isset($_POST['tipo_clase']) && $_POST['tipo_clase'] == 'Reposición') ? 'selected' : ''; ?>>
                                         Reposición
                                     </option>
-                                    <option value="Adelanto" <?php echo (!isset($_POST['tipo_clase']) || $_POST['tipo_clase'] == 'Adelanto') ? 'selected' : ''; ?>>
+                                    <option value="Adelanto" <?php echo (isset($_POST['tipo_clase']) && $_POST['tipo_clase'] == 'Adelanto') ? 'selected' : ''; ?>>
                                         Adelanto
                                     </option>
                                     <option value="Clase Muestra" <?php echo (isset($_POST['tipo_clase']) && $_POST['tipo_clase'] == 'Clase Muestra') ? 'selected' : ''; ?>>
