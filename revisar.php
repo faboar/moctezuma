@@ -219,7 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['fecha'])) {
                             <tr class="<?php echo $clase_fila; ?>">
                                 <td>
                                     <strong><?php echo htmlspecialchars($nombre_actual); ?></strong>
-                                    <br><small style="color: #666;">Grupo #<?php echo $contador_grupo; ?></small>
+                                    
                                 </td>
                                 <td><?php echo htmlspecialchars($fila['horario'] ?? ''); ?></td>
                                 <td><?php echo htmlspecialchars($fila['tipo_clase'] ?? '-'); ?></td>
