@@ -407,17 +407,32 @@ foreach (['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'] as $dia
                                                     <td>
                                                     <?php switch ($item['tipo_clase']):
                                                         case 'Grupal': ?>
-                                                            <span class="badge bg-info">
+                                                            <span class="badge bg-primary">
                                                                 <i class="fas fa-users me-1"></i>Grupal
                                                             </span>
                                                         <?php break;
                                                         case 'Reposición': ?>
-                                                            <span class="badge bg-secondary">
+                                                            <span class="badge bg-warning">
                                                                 <i class="fas fa-user me-1"></i>Reposición
                                                             </span>
                                                         <?php break;
-                                                            case 'Clase Muestra': ?>
+                                                         case 'Pareja': ?>
+                                                            <span class="badge bg-info">
+                                                                <i class="fas fa-user me-1"></i>Pareja
+                                                            </span>
+                                                        <?php break;
+                                                         case 'Completa': ?>
+                                                            <span class="badge bg-secondary">
+                                                                <i class="fas fa-user me-1"></i>Completa
+                                                            </span>
+                                                        <?php break;
+                                                         case 'Adelanto': ?>
                                                             <span class="badge bg-warning">
+                                                                <i class="fas fa-user me-1"></i>Adelanto
+                                                            </span>
+                                                        <?php break;
+                                                            case 'Clase Muestra': ?>
+                                                            <span class="badge bg-danger">
                                                                 <i class="fas fa-user me-1"></i>Clase Muestra
                                                             </span>
                                                         <?php break;
