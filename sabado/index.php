@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Sistema de Horarios de Clases - Página Principal
  */
@@ -43,10 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['horario_inicio'])) { 
         'tipo_clase' => sanitize($_POST['tipo_clase']),
         'dia_semana' => 'Sabado'
     ];
-    
+
     // Validar datos
     $errores = $horarios->validarHorario($data);
-    
+
     if (empty($errores)) {
         if ($horarios->insertarHorario($data)) {
             $mensaje_exito = "Horario registrado exitosamente";
@@ -84,6 +85,7 @@ $lista_horarios = $horarios->getHorarios('Sabado'); // Se mantiene 'Sabado' como
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -95,57 +97,69 @@ $lista_horarios = $horarios->getHorarios('Sabado'); // Se mantiene 'Sabado' como
         .select2-container {
             width: 100% !important;
         }
+
         .table-responsive {
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, .1);
         }
+
         .card {
-            box-shadow: 0 0 20px rgba(0,0,0,.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, .1);
             border: none;
             border-radius: 15px;
         }
+
         .card-header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border-radius: 15px 15px 0 0 !important;
         }
+
         .btn-primary {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border: none;
         }
+
         .btn-primary:hover {
             background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
             transform: translateY(-2px);
             transition: all 0.3s ease;
         }
+
         .alert-success {
             background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
             border: none;
             color: white;
         }
+
         .alert-danger {
             background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
             border: none;
             color: white;
         }
+
         .alert-warning {
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             border: none;
             color: white;
         }
+
         .form-control:focus {
             border-color: #667eea;
             box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
         }
+
         .page-header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 2rem 0;
             margin-bottom: 2rem;
         }
+
         .duracion-botones {
             margin-top: 0.5rem;
         }
+
         .duracion-botones .btn {
             margin-right: 0.25rem;
             font-size: 0.8rem;
@@ -153,6 +167,7 @@ $lista_horarios = $horarios->getHorarios('Sabado'); // Se mantiene 'Sabado' como
         }
     </style>
 </head>
+
 <body class="bg-light">
     <div class="page-header">
         <div class="container">
@@ -161,12 +176,12 @@ $lista_horarios = $horarios->getHorarios('Sabado'); // Se mantiene 'Sabado' como
                     <h1 class="mb-0"><i class="fas fa-calendar-alt me-3"></i>Sistema de Horarios</h1>
                     <p class="mb-0 mt-2">Gestión de clases del día Sabado</p>
                 </div>
-                  <div class="col-md-3 text-center">
+                <div class="col-md-3 text-center">
                     <!-- Botón Volver -->
                     <a href="../index.php" class="btn btn-light">
                         <i class="fas fa-arrow-left me-2"></i>Volver al Sistema
                     </a>
-                    
+
                     <!-- Dropdown Administración de Horarios -->
                     <div class="btn-group">
                         <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -174,26 +189,27 @@ $lista_horarios = $horarios->getHorarios('Sabado'); // Se mantiene 'Sabado' como
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="../lunes/index.php">
-                                <i class="fas fa-calendar-day me-2 text-info"></i>Lunes
-                            </a></li>
+                                    <i class="fas fa-calendar-day me-2 text-info"></i>Lunes
+                                </a></li>
                             <li><a class="dropdown-item" href="../martes/index.php">
-                                <i class="fas fa-calendar-day me-2 text-danger"></i>Martes
-                            </a></li>
+                                    <i class="fas fa-calendar-day me-2 text-danger"></i>Martes
+                                </a></li>
                             <li><a class="dropdown-item" href="../miercoles/index.php">
-                                <i class="fas fa-calendar-day me-2 text-success"></i>Miércoles
-                            </a></li>
+                                    <i class="fas fa-calendar-day me-2 text-success"></i>Miércoles
+                                </a></li>
                             <li><a class="dropdown-item" href="../jueves/index.php">
-                                <i class="fas fa-calendar-day me-2 text-warning"></i>Jueves
-                            </a></li>
+                                    <i class="fas fa-calendar-day me-2 text-warning"></i>Jueves
+                                </a></li>
                             <li><a class="dropdown-item" href="../viernes/index.php">
-                                <i class="fas fa-calendar-day me-2 text-secondary"></i>Viernes
-                            </a></li>
+                                    <i class="fas fa-calendar-day me-2 text-secondary"></i>Viernes
+                                </a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-4 text-end">
                     <div class="badge bg-light text-dark fs-6">
-                        <i class="fas fa-clock me-2"></i><?php date_default_timezone_set('America/Mexico_City'); echo date('d/m/Y H:i'); ?>
+                        <i class="fas fa-clock me-2"></i><?php date_default_timezone_set('America/Mexico_City');
+                                                            echo date('d/m/Y H:i'); ?>
                     </div>
                 </div>
             </div>
@@ -235,15 +251,15 @@ $lista_horarios = $horarios->getHorarios('Sabado'); // Se mantiene 'Sabado' como
                                     <label for="horario_inicio" class="form-label">
                                         <i class="fas fa-clock me-1"></i>Horario Inicio
                                     </label>
-                                    <input type="time" class="form-control" id="horario_inicio" name="horario_inicio" 
-                                           value="<?php echo $_POST['horario_inicio'] ?? ''; ?>" required>
+                                    <input type="time" class="form-control" id="horario_inicio" name="horario_inicio"
+                                        value="<?php echo $_POST['horario_inicio'] ?? ''; ?>" required>
                                 </div>
                                 <div class="col-6">
                                     <label for="horario_fin" class="form-label">
                                         <i class="fas fa-clock me-1"></i>Horario Fin
                                     </label>
-                                    <input type="time" class="form-control" id="horario_fin" name="horario_fin" 
-                                           value="<?php echo $_POST['horario_fin'] ?? ''; ?>" required>
+                                    <input type="time" class="form-control" id="horario_fin" name="horario_fin"
+                                        value="<?php echo $_POST['horario_fin'] ?? ''; ?>" required>
                                     <div class="duracion-botones">
                                         <small class="text-muted d-block mb-1">Duraciones rápidas:</small>
                                         <button type="button" class="btn btn-outline-primary btn-sm" onclick="establecerDuracion(30)">30 min</button>
@@ -259,8 +275,8 @@ $lista_horarios = $horarios->getHorarios('Sabado'); // Se mantiene 'Sabado' como
                                 <select class="form-select select2" id="id_maestra" name="id_maestra" required>
                                     <option value="">Seleccione una maestra...</option>
                                     <?php foreach ($maestras as $maestra): ?>
-                                        <option value="<?php echo $maestra['id']; ?>" 
-                                                <?php echo (isset($_POST['id_maestra']) && $_POST['id_maestra'] == $maestra['id']) ? 'selected' : ''; ?>>
+                                        <option value="<?php echo $maestra['id']; ?>"
+                                            <?php echo (isset($_POST['id_maestra']) && $_POST['id_maestra'] == $maestra['id']) ? 'selected' : ''; ?>>
                                             <?php echo htmlspecialchars($maestra['nombre']); ?>
                                         </option>
                                     <?php endforeach; ?>
@@ -274,8 +290,8 @@ $lista_horarios = $horarios->getHorarios('Sabado'); // Se mantiene 'Sabado' como
                                 <select class="form-select select2" id="id_alumno" name="id_alumno" required>
                                     <option value="">Seleccione un alumno...</option>
                                     <?php foreach ($alumnos as $alumno): ?>
-                                        <option value="<?php echo $alumno['id']; ?>" 
-                                                <?php echo (isset($_POST['id_alumno']) && $_POST['id_alumno'] == $alumno['id']) ? 'selected' : ''; ?>>
+                                        <option value="<?php echo $alumno['id']; ?>"
+                                            <?php echo (isset($_POST['id_alumno']) && $_POST['id_alumno'] == $alumno['id']) ? 'selected' : ''; ?>>
                                             <?php echo htmlspecialchars($alumno['nombre']); ?>
                                         </option>
                                     <?php endforeach; ?>
@@ -288,25 +304,25 @@ $lista_horarios = $horarios->getHorarios('Sabado'); // Se mantiene 'Sabado' como
                                 </label>
                                 <select class="form-select" id="id_ubicacion" name="id_ubicacion" required>
                                     <option value="">Seleccione una ubicación...</option>
-                                    <?php 
-                                        $contador = 0;
-                                        foreach ($ubicaciones as $ubicacion): 
+                                    <?php
+                                    $contador = 0;
+                                    foreach ($ubicaciones as $ubicacion):
                                         $contador++;
                                         $is_selected = false;
-        
+
                                         // Si hay POST, usar el valor enviado
                                         if (isset($_POST['id_ubicacion'])) {
                                             $is_selected = ($_POST['id_ubicacion'] == $ubicacion['id']);
-                                        } 
+                                        }
                                         // Si no hay POST, seleccionar el segundo elemento (contador == 2)
                                         else {
                                             $is_selected = ($contador == 3);
                                         }
                                     ?>
-                                    <option value="<?php echo $ubicacion['id']; ?>" 
-                                        <?php echo $is_selected ? 'selected' : ''; ?>>
-                                        <?php echo htmlspecialchars($ubicacion['ubicacion']); ?>
-                                    </option>
+                                        <option value="<?php echo $ubicacion['id']; ?>"
+                                            <?php echo $is_selected ? 'selected' : ''; ?>>
+                                            <?php echo htmlspecialchars($ubicacion['ubicacion']); ?>
+                                        </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -320,10 +336,10 @@ $lista_horarios = $horarios->getHorarios('Sabado'); // Se mantiene 'Sabado' como
                                     <option value="Individual" <?php echo (!isset($_POST['tipo_clase']) || $_POST['tipo_clase'] == 'Individual') ? 'selected' : ''; ?>>
                                         Individual
                                     </option>
-                                    <option value="Completa" <?php echo (!isset($_POST['tipo_clase']) || $_POST['tipo_clase'] == 'Completa') ? 'selected' : ''; ?>>
+                                    <option value="Completa" <?php echo (isset($_POST['tipo_clase']) && $_POST['tipo_clase'] == 'Completa') ? 'selected' : ''; ?>>
                                         Completa
                                     </option>
-                                    <option value="Pareja" <?php echo (!isset($_POST['tipo_clase']) || $_POST['tipo_clase'] == 'Pareja') ? 'selected' : ''; ?>>
+                                    <option value="Pareja" <?php echo (isset($_POST['tipo_clase']) && $_POST['tipo_clase'] == 'Pareja') ? 'selected' : ''; ?>>
                                         Pareja
                                     </option>
                                     <option value="Grupal" <?php echo (isset($_POST['tipo_clase']) && $_POST['tipo_clase'] == 'Grupal') ? 'selected' : ''; ?>>
@@ -332,7 +348,7 @@ $lista_horarios = $horarios->getHorarios('Sabado'); // Se mantiene 'Sabado' como
                                     <option value="Reposición" <?php echo (isset($_POST['tipo_clase']) && $_POST['tipo_clase'] == 'Reposición') ? 'selected' : ''; ?>>
                                         Reposición
                                     </option>
-                                    <option value="Adelanto" <?php echo (!isset($_POST['tipo_clase']) || $_POST['tipo_clase'] == 'Adelanto') ? 'selected' : ''; ?>>
+                                    <option value="Adelanto" <?php echo (isset($_POST['tipo_clase']) && $_POST['tipo_clase'] == 'Adelanto') ? 'selected' : ''; ?>>
                                         Adelanto
                                     </option>
                                     <option value="Clase Muestra" <?php echo (isset($_POST['tipo_clase']) && $_POST['tipo_clase'] == 'Clase Muestra') ? 'selected' : ''; ?>>
@@ -420,22 +436,22 @@ $lista_horarios = $horarios->getHorarios('Sabado'); // Se mantiene 'Sabado' como
                                                                 <i class="fas fa-user me-1"></i>Reposición
                                                             </span>
                                                         <?php break;
-                                                         case 'Pareja': ?>
+                                                        case 'Pareja': ?>
                                                             <span class="badge bg-info">
                                                                 <i class="fas fa-user me-1"></i>Pareja
                                                             </span>
                                                         <?php break;
-                                                         case 'Completa': ?>
+                                                        case 'Completa': ?>
                                                             <span class="badge bg-secondary">
                                                                 <i class="fas fa-user me-1"></i>Completa
                                                             </span>
                                                         <?php break;
-                                                         case 'Adelanto': ?>
+                                                        case 'Adelanto': ?>
                                                             <span class="badge bg-warning">
                                                                 <i class="fas fa-user me-1"></i>Adelanto
                                                             </span>
                                                         <?php break;
-                                                            case 'Clase Muestra': ?>
+                                                        case 'Clase Muestra': ?>
                                                             <span class="badge bg-danger">
                                                                 <i class="fas fa-user me-1"></i>Clase Muestra
                                                             </span>
@@ -485,25 +501,25 @@ $lista_horarios = $horarios->getHorarios('Sabado'); // Se mantiene 'Sabado' como
                     }
                 }
             });
-            
+
             // Auto-hide alerts after 5 seconds
             setTimeout(function() {
                 $('.alert').fadeOut('slow');
             }, 5000);
-            
+
             // Validación de duración en tiempo real
             function validarDuracion() {
                 var inicio = $('#horario_inicio').val();
                 var fin = $('#horario_fin').val();
-                
+
                 if (inicio && fin) {
                     var inicioMinutos = convertirAMinutos(inicio);
                     var finMinutos = convertirAMinutos(fin);
                     var diferencia = finMinutos - inicioMinutos;
-                    
+
                     // Limpiar mensajes anteriores
                     $('#mensaje-duracion').remove();
-                    
+
                     if (diferencia <= 0) {
                         mostrarMensajeDuracion('El horario de fin debe ser mayor que el de inicio', 'danger');
                         return false;
@@ -517,39 +533,39 @@ $lista_horarios = $horarios->getHorarios('Sabado'); // Se mantiene 'Sabado' como
                 }
                 return true;
             }
-            
+
             function convertirAMinutos(tiempo) {
                 var partes = tiempo.split(':');
                 return parseInt(partes[0]) * 60 + parseInt(partes[1]);
             }
-            
+
             function mostrarMensajeDuracion(mensaje, tipo) {
                 var html = '<div id="mensaje-duracion" class="alert alert-' + tipo + ' mt-2">' +
-                          '<i class="fas fa-clock me-2"></i>' + mensaje + '</div>';
+                    '<i class="fas fa-clock me-2"></i>' + mensaje + '</div>';
                 $('#horario_fin').closest('.col-6').append(html);
             }
-            
+
             // Validar duración cuando cambian los horarios
             $('#horario_inicio, #horario_fin').on('change', function() {
                 validarDuracion();
             });
-            
+
             // Validación del formulario al enviar
             $('#formHorario').on('submit', function(e) {
                 var inicio = $('#horario_inicio').val();
                 var fin = $('#horario_fin').val();
-                
+
                 if (inicio && fin) {
                     var inicioMinutos = convertirAMinutos(inicio);
                     var finMinutos = convertirAMinutos(fin);
                     var diferencia = finMinutos - inicioMinutos;
-                    
+
                     if (diferencia <= 0) {
                         e.preventDefault();
                         alert('El horario de fin debe ser mayor que el de inicio');
                         return false;
                     }
-                    
+
                     if (diferencia !== 30 && diferencia !== 45) {
                         e.preventDefault();
                         alert('La duración debe ser exactamente 30 o 45 minutos.\nDuración actual: ' + diferencia + ' minutos');
@@ -558,7 +574,7 @@ $lista_horarios = $horarios->getHorarios('Sabado'); // Se mantiene 'Sabado' como
                 }
             });
         });
-        
+
         // Función global para establecer duración automáticamente
         function establecerDuracion(minutos) {
             var inicio = $('#horario_inicio').val();
@@ -567,7 +583,7 @@ $lista_horarios = $horarios->getHorarios('Sabado'); // Se mantiene 'Sabado' como
                 var finMinutos = inicioMinutos + minutos;
                 var horas = Math.floor(finMinutos / 60);
                 var mins = finMinutos % 60;
-                
+
                 var fin = String(horas).padStart(2, '0') + ':' + String(mins).padStart(2, '0');
                 $('#horario_fin').val(fin);
                 $('#horario_fin').trigger('change');
@@ -577,4 +593,5 @@ $lista_horarios = $horarios->getHorarios('Sabado'); // Se mantiene 'Sabado' como
         }
     </script>
 </body>
+
 </html>
