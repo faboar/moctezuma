@@ -161,8 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['fecha'])) {
                 <label for="sucursal">Sucursal:</label>
                 <select id="sucursal" name="sucursal">
                     <option value="MOC" <?php echo ($sucursal == 'MOC') ? 'selected' : ''; ?>>MOC</option>
-                    <option value="CEN" <?php echo ($sucursal == 'CEN') ? 'selected' : ''; ?>>CEN</option>
-                    <option value="SUR" <?php echo ($sucursal == 'SUR') ? 'selected' : ''; ?>>SUR</option>
+                    <option value="CEN" <?php echo ($sucursal == 'CEN') ? 'selected' : ''; ?>>LAS</option>
                 </select>
             </div>
             
