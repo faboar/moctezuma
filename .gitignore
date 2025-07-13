@@ -2,3 +2,4 @@ config/
 .htaccess
 Moctezuma.code-workspace
 revisar_backup.php
+revisar_quincena_backup.php

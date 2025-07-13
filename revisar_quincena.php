@@ -4,23 +4,22 @@
 // ==================================================
 
 // Incluir configuración de la base de datos
-require_once 'config/database2.php';
+require_once 'config/database.php';
 
 // Procesar el formulario
 $nombre_seleccionado = isset($_POST['nombre']) ? $_POST['nombre'] : '';
 $fecha_inicial = isset($_POST['fecha_inicial']) ? $_POST['fecha_inicial'] : date('Y-m-d', strtotime('-7 days'));
 $fecha_final = isset($_POST['fecha_final']) ? $_POST['fecha_final'] : date('Y-m-d');
-
+$sucursal = isset($_POST['sucursal']) ? $_POST['sucursal'] : 'MOC';
 $resultados = [];
 $nombres_disponibles = [];
 $error = '';
 
-// Obtener lista de nombres disponibles
+// Obtener lista de nombres disponibles directamente de la tabla users
 try {
-    $stmt = $pdo->prepare("CALL obtener_nombres_disponibles()");
-    $stmt->execute();
+    $stmt = $pdo->prepare("SELECT nombre FROM users WHERE status = 1 AND sucursal = ? ORDER BY nombre");
+    $stmt->execute([$sucursal]);
     $nombres_disponibles = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $stmt->closeCursor();
 } catch(PDOException $e) {
     $error = "Error al obtener nombres: " . $e->getMessage();
 }
@@ -28,8 +27,8 @@ try {
 // Procesar consulta principal si se envió el formulario
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['nombre']) && !empty($_POST['fecha_inicial']) && !empty($_POST['fecha_final'])) {
     try {
-        $stmt = $pdo->prepare("CALL horas_horarios_periodo(?, ?, ?)");
-        $stmt->execute([$nombre_seleccionado, $fecha_inicial, $fecha_final]);
+        $stmt = $pdo->prepare("CALL horas_horarios_periodo(?, ?, ?, ?)");
+        $stmt->execute([$nombre_seleccionado, $fecha_inicial, $fecha_final, $sucursal]);
         $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
     } catch(PDOException $e) {
@@ -212,11 +211,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['nombre']) && !empty($
                     </select>
                 </div>
                 
-                
-            </div>
                 <div class="form-group">
-                    
+
                 </div>
+            </div>
+            
             <div class="form-row">
                 <div class="form-group">
                     <label for="fecha_inicial">Fecha Inicial:</label>
@@ -246,6 +245,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['nombre']) && !empty($
             <div class="info">
                 <strong>Análisis para:</strong> <?php echo htmlspecialchars($nombre_seleccionado); ?> 
                 | <strong>Período:</strong> <?php echo htmlspecialchars($fecha_inicial); ?> al <?php echo htmlspecialchars($fecha_final); ?>
+                | <strong>Sucursal:</strong> <?php echo htmlspecialchars($sucursal); ?>
             </div>
 
             <?php if (count($resultados) > 0): 
