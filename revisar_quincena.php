@@ -212,14 +212,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['nombre']) && !empty($
                     </select>
                 </div>
                 
-                <div class="form-group">
-                    <label for="sucursal">Sucursal:</label>
-                    <select id="sucursal" name="sucursal" onchange="this.form.submit()">
-                        <option value="MOC" <?php echo ($sucursal == 'MOC') ? 'selected' : ''; ?>>MOC</option>
-                        <option value="CEN" <?php echo ($sucursal == 'CEN') ? 'selected' : ''; ?>>CEN</option>
-                        <option value="SUR" <?php echo ($sucursal == 'SUR') ? 'selected' : ''; ?>>SUR</option>
-                    </select>
-                </div>
+                
             </div>
             
             <div class="form-row">
@@ -251,7 +244,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['nombre']) && !empty($
             <div class="info">
                 <strong>Análisis para:</strong> <?php echo htmlspecialchars($nombre_seleccionado); ?> 
                 | <strong>Período:</strong> <?php echo htmlspecialchars($fecha_inicial); ?> al <?php echo htmlspecialchars($fecha_final); ?>
-                | <strong>Sucursal:</strong> <?php echo htmlspecialchars($sucursal); ?>
             </div>
 
             <?php if (count($resultados) > 0): 
