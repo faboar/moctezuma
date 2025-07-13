@@ -4,7 +4,7 @@
 // ==================================================
 
 // Incluir configuración de la base de datos
-require_once 'config/database.php';
+require_once 'config/database2.php';
 
 // Procesar el formulario
 $nombre_seleccionado = isset($_POST['nombre']) ? $_POST['nombre'] : '';
@@ -27,8 +27,8 @@ try {
 // Procesar consulta principal si se envió el formulario
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['nombre']) && !empty($_POST['fecha_inicial']) && !empty($_POST['fecha_final'])) {
     try {
-        $stmt = $pdo->prepare("CALL horas_horarios_periodo(?, ?, ?, ?)");
-        $stmt->execute([$nombre_seleccionado, $fecha_inicial, $fecha_final, $sucursal]);
+        $stmt = $pdo->prepare("CALL horas_horarios_periodo(?, ?, ?)");
+        $stmt->execute([$nombre_seleccionado, $fecha_inicial, $fecha_final]);
         $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
     } catch(PDOException $e) {
