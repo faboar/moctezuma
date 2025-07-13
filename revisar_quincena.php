@@ -214,13 +214,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['nombre']) && !empty($
                 
                 
             </div>
-                            <div class="form-group">
-                    <label for="sucursal">Sucursal:</label>
-                    <select id="sucursal" name="sucursal" onchange="this.form.submit()">
-                        <option value="MOC" <?php echo ($sucursal == 'MOC') ? 'selected' : ''; ?>>MOC</option>
-                        <option value="CEN" <?php echo ($sucursal == 'CEN') ? 'selected' : ''; ?>>CEN</option>
-                        <option value="SUR" <?php echo ($sucursal == 'SUR') ? 'selected' : ''; ?>>SUR</option>
-                    </select>
+                <div class="form-group">
+                    
                 </div>
             <div class="form-row">
                 <div class="form-group">
