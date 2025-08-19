@@ -565,7 +565,7 @@ foreach (['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'] as $dia
                         </div>
                     </div>
                     
-                    <a href="/blueadmin/index.php" class="btn-logout" onclick="return confirm('¿Está seguro de que desea ir al inicio?')">
+                    <a href="/blueadmin/index.php" class="btn-logout">
                         <i class="fas fa-home"></i>
                         <span>Inicio</span>
                     </a>
