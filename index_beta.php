@@ -530,11 +530,7 @@ foreach (['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'] as $dia
 
                     <?php endif; ?>
                     
-                    <!-- Botón adicional de navegación rápida -->
-                    <a href="/blueadmin/horas.php" class="btn-nav">
-                        <i class="fas fa-plus-circle"></i>
-                        <span>Nuevo Registro</span>
-                    </a>
+                    
                 </div>
             </div>
 
